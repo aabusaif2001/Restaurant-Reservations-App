@@ -168,7 +168,7 @@ async function occupy(req, res) {
 
   const { table_id } = req.params;
   const { reservation_id } = req.body.data;
-  console.log(req.body.data)
+  //console.log(req.body.data)
   const data = await service.occupy(table_id, reservation_id);
   res.status(200).json({ data: data });
 }
