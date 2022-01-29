@@ -41,11 +41,23 @@ const _validateCapacity = (req, res, next) => {
     });
 };
 
+const hasPayload = (req, res, next) => {
+  const data = req.body.data;
+  if (!data) {
+    next({
+      status: 400,
+      message: "Data is required for a valid request",
+    });
+  } else {
+    next();
+  }
+};
 const _validateOccupied = (req, res, next) => {
   if (!req.body.data.occupied) req.body.data.occupied = false;
 };
 
 const _validateReservationId = async (req, res, next) => {
+  //if (!req.body.data)
   let { reservation_id } = req.body.data;
   if (!reservation_id)
     next({
@@ -103,9 +115,12 @@ const _validateCurrentlyOccupied = (req, res, next) => {
 
 const _validateCurrentlySeated = (req, res, next) => {
   const { status } = res.locals.reservation;
-  if (status === "seated")
+  if (status === "seated"){
+    //console.log("status is seeded")
     next({ status: 400, message: "This reservation ios already seated" });
+  }
 };
+
 
 //organizational middleware
 
@@ -119,9 +134,14 @@ async function _createValidations(req, res, next) {
 }
 
 async function _occupyValidations(req, res, next) {
+  //console.log("before validations")
+  //hasPayload(req, res, next)
   await _validateReservationId(req, res, next);
+  //nsole.log("after _validateReservationId")
   await _listById(req, res, next);
+  //console.log("after _listById")
   _validateSeatCapacity(req, res, next);
+  //console.log("after _validateSeatCapacity")
   _validateCurrentlySeated(req, res, next);
   next();
 }
@@ -145,8 +165,10 @@ async function list(req, res) {
 }
 
 async function occupy(req, res) {
+
   const { table_id } = req.params;
   const { reservation_id } = req.body.data;
+  console.log(req.body.data)
   const data = await service.occupy(table_id, reservation_id);
   res.status(200).json({ data: data });
 }
@@ -161,6 +183,6 @@ async function free(req, res) {
 module.exports = {
   create: [asyncErrorBoundary(_createValidations), asyncErrorBoundary(create)],
   list: [asyncErrorBoundary(list)],
-  occupy: [asyncErrorBoundary(_occupyValidations), asyncErrorBoundary(occupy)],
+  occupy: [hasPayload, asyncErrorBoundary(_occupyValidations), asyncErrorBoundary(occupy)],
   free: [asyncErrorBoundary(_freeValidations), asyncErrorBoundary(free)],
 };
