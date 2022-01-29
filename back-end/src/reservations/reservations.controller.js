@@ -1,7 +1,8 @@
 const service = require("./reservations.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
-//functional middleware
+
+
 
 const _validateProperties = (req, res, next) => {
   const reservation = req.body.data;
@@ -198,7 +199,6 @@ const _validateUnfinished = (req, res, next) => {
   res.locals.status = status;
 };
 
-//organizational middleware
 
 async function _createValidations(req, res, next) {
   _validateProperties(req, res, next);
@@ -237,7 +237,6 @@ async function _editValidations(req, res, next) {
   next();
 }
 
-//executive functions
 
 async function list(req, res) {
   let { date = null } = req.query;

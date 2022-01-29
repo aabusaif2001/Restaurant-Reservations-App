@@ -8,31 +8,31 @@ h5 {
 }
 
 .list-group-item {
-  background-color: #e8e5da;
+  background-color: #e7d285;
 }
 
 .lgi-table {
-  background-color: #D9BFD3;
+  background-color: #2c88ac;
 }
 
 .lgi-interior {
-  background-color: #e8e5da;
-  color: #3a445d;
+  background-color: #f0c425;
+  color: #a730d6;
 }
 
 .lgi-table-interior {
-  background-color: #D9BFD3;
-  color: #3a445d;
+  background-color: #3ae024;
+  color: #306afc;
 }
 
 .side-bar {
-  background-color: #393a44;
+  background-color: #545fdf;
   min-width: 200px;
 }
 
 .menu {
-  background-color: #393a44;
-  color: #d9bfd3;
+  background-color: #072c0900;
+  color: #5042d4;
 }
 
 .menu-align {
@@ -40,45 +40,45 @@ h5 {
 }
 
 .btn-a {
-  color: #393a44;
-  background-color: #de89be;
+  color: #101c9c;
+  background-color: #e4802e;
 }
 
 .border-a {
-  border: 1px solid #bf368a;
+  border: 1px solid #0a0809;
 }
 
 .border-a:hover {
-  border: 1px solid #de89be;
+  border: 1px solid #290f1f;
 }
 
 .btn-a:hover {
-  background-color: #bf368a;
+  background-color: #240919;
 }
 
 .btn-warn {
-  background-color: #bf211e;
-  color: #d9bfd3;
-  border: 1px solid #8d1816;
+  background-color: #c7901a;
+  color: #c99a1a;
+  border: 1px solid #3d62c5;
 }
 
 .btn-warn:hover {
-  background-color: #8d1816;
-  color: #d9bfd3;
-  border: 1px solid #bf211e;
+  background-color: #e0a72c;
+  color: #194772;
+  border: 1px solid #053744;
 }
 
 .form-control {
-  background-color: #E8E5DA;
-  color: #393a44;
+  background-color: #c5901f;
+  color: #b8a018;
 }
 
 .minw100 {
-  min-width: 100px;
+  min-width: 75px;
 }
 
 .minw300 {
-  min-width: 300px;
+  min-width: 275px;
 }
 
 @media (min-width: 768px) {
