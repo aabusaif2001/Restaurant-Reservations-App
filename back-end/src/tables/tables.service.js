@@ -44,10 +44,11 @@ function free(table_id, reservation_id) {
     return db("tables")
       .transacting(transaction)
       .where({ table_id: table_id })
-      .update({ occupied: false })
+      .update({ occupied: false, reservation_id: null })
+      .returning("*")
       .then(function () {
         return db("reservations")
-          .where({ reservation_id: reservation_id })
+          .where({ reservation_id })
           .update({ status: "finished" });
       })
       .then(transaction.commit)

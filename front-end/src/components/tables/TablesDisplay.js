@@ -13,8 +13,8 @@ export default function TablesDisplay({ tables, loadDashboard }) {
       return null;
     const abortController = new AbortController();
     await freeTable(target.value, abortController.signal)
-      .then(loadDashboard)
-      .then(history.push(`/dashboard?date=${today()}`));
+    await loadDashboard()
+      history.push(`/dashboard?date=${today()}`);
     return () => abortController.abort();
   }
 
@@ -26,19 +26,20 @@ export default function TablesDisplay({ tables, loadDashboard }) {
     ) : (
       <ul className="list-group">
         {tables.map((table, index) => {
+          console.log(table)
           return (
             <li className="list-group-item lgi-table" key={table.table_id}>
               <h5 className="lgi-table-interior">
                 {table.table_name}: seats up to {table.capacity}
               </h5>
-              {table.occupied ? (
+              {table.reservation_id ? (
                 <div className="lgi-table-interior">
-                  <h5
+                  <p
                     className="lgi-table-interior"
                     data-table-id-status={table.table_id}
                   >
-                    Occupied
-                  </h5>
+                    occupied
+                  </p>
                   <button
                     type="button"
                     name="finish"
@@ -49,16 +50,16 @@ export default function TablesDisplay({ tables, loadDashboard }) {
                     data-table-id-finish={table.table_id}
                     onClick={_clickHandler}
                   >
-                    Finish
+                  Finish
                   </button>
                 </div>
               ) : (
-                <h5
+                <p
                   className="lgi-table-interior"
                   data-table-id-status={table.table_id}
                 >
                   Free
-                </h5>
+                </p>
               )}
             </li>
           );

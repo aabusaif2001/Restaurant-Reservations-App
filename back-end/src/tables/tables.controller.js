@@ -108,8 +108,8 @@ const _validateSeatCapacity = (req, res, next) => {
 };
 
 const _validateCurrentlyOccupied = (req, res, next) => {
-  const { occupied } = res.locals;
-  if (!occupied)
+  const { reservation_id } = res.locals;
+  if (!reservation_id)
     next({ status: 400, message: `The table you selected is not occupied.` });
 };
 
