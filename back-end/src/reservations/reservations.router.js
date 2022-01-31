@@ -16,7 +16,7 @@
  router
    .route("/:reservation_id/status")
    .put(controller.updateStatus)
-   .all(methodNotAllowed);
+   .all(methodNotAllowed); 
  
  router
    .route("/:reservation_id/edit")
