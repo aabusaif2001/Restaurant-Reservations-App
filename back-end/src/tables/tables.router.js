@@ -1,5 +1,5 @@
 const cors = require("cors");
-const methodNotAllowed = require("../errors/methodNotAllowed");
+const methodNotAllowed = require("../errors/MethodNotAllowed");
 const router = require("express").Router();
 const controller = require("./tables.controller");
 
